@@ -109,12 +109,46 @@ Your SuperAdmin role is tied to your **Principal**, which comes from **Internet 
    - Log in with the same anchor/device you used on the old laptop
    - Or add a new device to your existing anchor and use that
 
-2. **No need to copy DFX identity** if you use Internet Identity for auth. The app uses `@dfinity/auth-client` and Internet Identity, not `dfx identity`.
+   > **Note:** This gives you access to the **App** (SuperAdmin dashboard), but NOT necessarily the ability to **upgrade the code**.
+
+### Critical: Secure Your Developer Access (Controller)
+
+If you only use `dfx deploy` locally, your **local computer key** is likely the only controller. If you wipe this computer without exporting the identity, **you will lose control of your canisters** (cannot upgrade them).
+
+**Recommended Safety Step:** Add your NNS Principal as a controller.
+1. Go to [nns.internetcomputer.org](https://nns.internetcomputer.org) -> **My Canisters**.
+2. Copy your **Main Principal** (top of the page).
+3. On your **OLD laptop**, run:
+   ```bash
+   dfx canister update-settings --all --add-controller <YOUR-NNS-PRINCIPAL> --network ic
+   ```
+4. Now you can control your canisters from the NNS UI even if you lose your local identity file.
+
+2. **For App Authentication:**
+   - **No need to copy DFX identity**: The app uses Internet Identity. As long as you log in with the same Anchor, you are the same user.
+
+3. **For Developer Access (Deploying Updates):**
+   - **CRITICAL**: You MUST export your `dfx` identity if you want to be able to upgrade or manage the canisters.
+   - Run on old laptop: `dfx identity export default > changes_identity.pem`
+   - Copy `changes_identity.pem` to the new laptop.
+3. **For Developer Access (Deploying Updates):**
+
+   **Option A: Import Old Identity (Best)**
+   - Follow the steps above to export/import `changes_identity.pem`.
+   - This keeps your principal the same.
+
+   **Option B: Authorize New Laptop via NNS (Backup Plan)**
+   - If you **did not** export your identity but you **did** add NNS as a controller (Step Critical above):
+     1. On the **NEW laptop**, run: `dfx identity get-principal`
+     2. Go to [nns.internetcomputer.org](https://nns.internetcomputer.org) -> **My Canisters**.
+     3. Select each canister -> **Add Controller**.
+     4. Paste the Principal from step 1.
+     5. Now your new laptop is authorized to deploy!
 
 3. **If canisters are already deployed to IC mainnet:**
    - Your SuperAdmin status is stored in the backend canister
    - Log in with the same Internet Identity on the new laptop
-   - You will have the same Principal and thus the same SuperAdmin access
+   - You will have the same Prin cipal and thus the same SuperAdmin access
 
 4. **If you are starting with a fresh local replica:**
    - Run `dfx start` and `dfx deploy backend`
