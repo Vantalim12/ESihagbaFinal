@@ -1,0 +1,26 @@
+{
+  "name": "esihagba-blockchain-tracker",
+  "version": "2.0.0",
+  "description": "eSihagBa - City Budget Tracking System on Internet Computer",
+  "main": "frontend/app.js",
+  "scripts": {
+    "build": "echo 'Static build - files ready'",
+    "start": "echo 'Static site - use Vercel for hosting'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "blockchain",
+    "icp",
+    "budget-tracking",
+    "esihagba",
+    "motoko",
+    "government"
+  ],
+  "author": "eSihagBa Development Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/eSihagBaV2.git"
+  },
+  "homepage": "https://your-deployment.vercel.app"
+}

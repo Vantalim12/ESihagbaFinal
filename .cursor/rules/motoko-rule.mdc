@@ -1,0 +1,135 @@
+---
+alwaysApply: true
+---
+
+---
+description: Motoko programming language best practices and conventions for Internet Computer development
+globs: **/*.mo
+---
+
+# Motoko Best Practices
+
+## Actor Model
+- Use `persistent actor` for canisters that need state persistence across upgrades
+- Implement `system func preupgrade()` to serialize state before upgrades
+- Implement `system func postupgrade()` to restore state after upgrades
+- Use stable variables for data that must survive canister upgrades
+- Use working state (HashMap) for runtime operations
+- Declare stable variables with `private stable var` for persistence
+- Convert HashMap to stable arrays in preupgrade, restore in postupgrade
+
+## Type System
+- Use variant types for enums (e.g., `#Admin`, `#User`, `#Auditor`)
+- Use record types for structured data with named fields
+- Use optional types (`?T`) for nullable values
+- Place type definitions in separate modules for reusability
+- Use type aliases to improve code readability
+- Leverage discriminated unions for type safety
+- Define types in dedicated modules (e.g., `types.mo`)
+
+## Imports and Modules
+- Import base library modules using `mo:base/` prefix
+- Organize imports logically (base libraries first, then project modules)
+- Use module pattern for utilities and shared types
+- Import commonly used modules: Time, HashMap, Principal, Result, Array, Text
+- Group related imports together
+- Use descriptive module names
+
+## Naming Conventions
+- Use PascalCase for type names, modules, and actors
+- Use camelCase for variables, functions, and parameters
+- Use descriptive names for stable variables (e.g., `transactionsEntries`, `walletsEntries`)
+- Prefix stable arrays with `Entries` suffix (e.g., `transactionsEntries`)
+- Use clear, self-documenting names
+- Avoid abbreviations unless widely understood
+
+## State Management
+- Declare stable variables for data persistence
+- Initialize HashMap with proper equality and hash functions
+- Use stable arrays as intermediate storage for HashMap data
+- Implement preupgrade/postupgrade pattern for state migration
+- Clear stable arrays after restoration in postupgrade
+- Use appropriate initial capacity for HashMap (estimate based on expected size)
+- Provide custom equality and hash functions for HashMap keys
+
+## Functions
+- Use `public query` for read-only operations that don't modify state
+- Use `public shared(msg)` for authenticated operations requiring caller identity
+- Use `public func` for operations that modify state but don't need authentication
+- Prefer explicit return types for public functions
+- Use `Result<T, E>` type for error handling instead of exceptions
+- Validate inputs before processing
+- Use async functions for operations that may take time
+
+## Error Handling
+- Prefer `Result` types over exceptions for error handling
+- Use `#ok(value)` for successful operations
+- Use `#err(message)` for error cases
+- Validate inputs early and return errors immediately
+- Provide descriptive error messages
+- Handle all error cases explicitly
+- Use pattern matching with `switch` to handle Result types
+
+## Pattern Matching
+- Use `switch` expressions for variant types
+- Handle all cases exhaustively (compiler enforces this)
+- Use pattern matching for Option types (`?value`)
+- Use `case (?value)` for Some values
+- Use `case null` for None values
+- Match on variant tags (e.g., `case (#Admin) { ... }`)
+- Use pattern matching for Result types
+
+## Code Style
+- Put spaces around arithmetic, comparison, Boolean, and assignment operators
+- Put spaces around `=` and `:` in declarations
+- Space after commas and semicolons, but not before
+- Space inside braces unless they're simple variants or records
+- Space between statement keywords (`if`, `for`, `switch`, `assert`, `await`) and their operands
+- No space between function/variant tags and their argument tuples
+- No space around access operators (`.`, `?`, `!`, index brackets)
+- Use 80 character line limit as a guideline
+- Break lines after operators, not before
+- Place each argument on a separate line for long function calls
+
+## Authentication and Authorization
+- Use `Principal` type for user identity
+- Access caller identity via `msg.caller` in shared functions
+- Implement role-based access control using variant types
+- Validate permissions before performing operations
+- Use query functions when caller identity is not needed
+- Store user principals in stable state for persistence
+
+## Time Operations
+- Use `Time.now()` for current timestamp
+- Store timestamps as `Time.Time` type
+- Calculate time differences using nanoseconds
+- Use constants for time conversions (e.g., `dayInNanoseconds`)
+- Include timestamps in records for audit trails
+
+## Data Validation
+- Validate email addresses before storing
+- Validate addresses (wallet addresses, transaction hashes)
+- Validate amounts are within reasonable bounds
+- Sanitize text input to prevent injection attacks
+- Normalize addresses for consistency
+- Check for required fields before processing
+
+## Utilities and Helpers
+- Place utility functions in separate modules (e.g., `utils.mo`)
+- Create reusable hash and equality functions for HashMap
+- Implement helper functions for common operations
+- Use module pattern for organizing utilities
+- Export functions that may be reused across modules
+- Keep utility functions pure when possible
+
+## Best Practices
+- Separate types into dedicated modules
+- Keep actors focused on business logic
+- Use Result types for operations that can fail
+- Implement proper state migration for upgrades
+- Test preupgrade/postupgrade logic thoroughly
+- Document complex algorithms and business rules
+- Use meaningful variable names that describe purpose
+- Avoid magic numbers, use named constants
+- Handle edge cases explicitly
+- Keep functions focused and single-purpose

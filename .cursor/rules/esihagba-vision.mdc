@@ -1,0 +1,27 @@
+---
+description: eSihagBa core vision and architecture - barangay wallets, LGU budget allocation, transparent spending
+globs: **/*.ts, **/*.tsx, **/*.mo
+alwaysApply: false
+---
+
+# eSihagBa Core Vision
+
+When working on eSihagBa, align with this core functionality:
+
+## Primary Flow
+1. **One wallet per barangay** – Each barangay has a unique wallet address (their budget account)
+2. **LGU Super Admin allocates** – LGU sends/assigns budget to each barangay for a time period (e.g., quarterly)
+3. **Transparent spending** – Each barangay sees their allocation, spending, and remaining balance; citizens can verify on-chain
+
+## Roles
+- **LGU Super Admin**: Create barangay wallets, allocate budgets per period, oversee all barangays
+- **Barangay Admin**: Manage own barangay wallet, record spending
+- **Auditor**: Read-only compliance access
+- **Citizen**: Public transparency view (no auth)
+
+## Key Concepts
+- Barangay = Entity with primary wallet
+- BudgetAllocation = LGU → Barangay for period X
+- Transaction = Spending from barangay wallet, linked to allocation/period
+
+See `ARCHITECTURE_AND_VISION.md` for full design, architecture review, and implementation phases (Phase 0–7).

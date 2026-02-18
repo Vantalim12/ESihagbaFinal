@@ -1,0 +1,507 @@
+{
+  "project": {
+    "name": "eSihagBa",
+    "description": "City Budget Tracking System",
+    "theme": "Government/Municipal budget transparency and tracking system with blockchain integration",
+    "primaryColor": "#1a237e",
+    "location": "Iligan, Northern Mindanao, Philippines"
+  },
+  "designSystem": {
+    "colorPalette": {
+      "primary": "#1a237e",
+      "secondary": "#283593",
+      "accent": "#5c6bc0",
+      "lightAccent": "#c5cae9",
+      "success": "#43a047",
+      "warning": "#ff9800",
+      "danger": "#e53935",
+      "textLight": "rgba(255, 255, 255, 0.9)",
+      "textMuted": "rgba(255, 255, 255, 0.6)",
+      "cardShadow": "0 4px 6px rgba(0, 0, 0, 0.1)",
+      "walletGradient": "linear-gradient(135deg, #ff6b35, #f7931e)"
+    },
+    "typography": {
+      "fontFamily": "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
+      "headings": {
+        "h1": "h2 class with icon prefix",
+        "h2": "Dashboard section headers with icons",
+        "h3": "Card titles and statistics",
+        "h4": "Subcategory headers",
+        "h5": "Card component titles",
+        "h6": "Form labels and metadata"
+      }
+    },
+    "spacing": {
+      "cardMargin": "20px",
+      "sectionPadding": "32px",
+      "componentGap": "1rem to 2rem",
+      "containerPadding": "px-md-4"
+    },
+    "borderRadius": {
+      "default": "6px",
+      "cards": "10px",
+      "buttons": "6px",
+      "pills": "20px",
+      "modal": "16px"
+    },
+    "shadows": {
+      "card": "0 4px 6px rgba(0, 0, 0, 0.1)",
+      "hover": "0 10px 20px rgba(0, 0, 0, 0.15)",
+      "wallet": "0 4px 12px rgba(255, 107, 53, 0.3)"
+    },
+    "transitions": {
+      "speed": "0.3s",
+      "easing": "ease",
+      "hoverTransform": "translateY(-5px) or translateX(5px)"
+    }
+  },
+  "layout": {
+    "structure": "Single page application with horizontal navigation",
+    "navigation": {
+      "type": "Horizontal top navigation bar",
+      "position": "sticky top",
+      "background": "linear-gradient(135deg, var(--primary-color), var(--secondary-color))",
+      "items": [
+        {
+          "name": "Dashboard",
+          "icon": "bi-house-door",
+          "href": "#dashboard",
+          "default": true
+        },
+        {
+          "name": "Budget Analytics",
+          "icon": "bi-pie-chart",
+          "href": "#budget"
+        },
+        {
+          "name": "Transactions",
+          "icon": "bi-file-text",
+          "href": "#transactions"
+        },
+        {
+          "name": "Audit Trail",
+          "icon": "bi-journal-check",
+          "href": "#audit-trail"
+        },
+        {
+          "name": "Event Management",
+          "icon": "bi-calendar-event",
+          "href": "#events"
+        },
+        {
+          "name": "Citizen Portal",
+          "icon": "bi-people",
+          "href": "#citizens"
+        }
+      ],
+      "specialButtons": [
+        {
+          "type": "wallet-connect",
+          "text": "Connect Wallet",
+          "icon": "bi-wallet2",
+          "class": "wallet-connect-btn",
+          "gradient": "linear-gradient(135deg, #ff6b35, #f7931e)"
+        }
+      ]
+    },
+    "header": {
+      "logo": {
+        "icon": "bi-buildings-fill",
+        "title": "eSihagBa",
+        "subtitle": "City Budget Tracking System"
+      },
+      "userArea": {
+        "search": {
+          "placeholder": "Search transactions, events...",
+          "icon": "bi-search",
+          "style": "rounded search input with icon"
+        },
+        "notifications": {
+          "icon": "bi-bell",
+          "badge": "3",
+          "style": "with badge indicator"
+        },
+        "chat": {
+          "icon": "bi-chat",
+          "functionality": "Opens floating chat widget"
+        },
+        "user": {
+          "avatar": "Circular with initials (BB)",
+          "name": "Barangay VillaVerde",
+          "status": {
+            "wallet": "Connected/Disconnected indicator",
+            "styles": {
+              "connected": "green with checkmark",
+              "disconnected": "red with warning"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "cards": {
+      "statCard": {
+        "structure": "Icon + Title + Value + Trend indicator",
+        "hover": "translateY(-5px) with enhanced shadow",
+        "examples": [
+          {
+            "title": "Total Budget (2025)",
+            "value": "₱2,500,000",
+            "trend": "+5% from last year",
+            "icon": "bi-cash-stack",
+            "color": "primary"
+          }
+        ]
+      },
+      "transactionCard": {
+        "structure": "Header with filters + Table with pagination",
+        "features": ["Blockchain verification badges", "Action buttons", "Status indicators"],
+        "verification": {
+          "verified": "Green badge with shield-check icon",
+          "pending": "Orange badge with shield icon"
+        }
+      },
+      "auditTrailCard": {
+        "structure": "Timeline-style items with color-coded severity",
+        "severityColors": {
+          "success": "Green left border",
+          "warning": "Orange left border",
+          "danger": "Red left border",
+          "default": "Primary color left border"
+        },
+        "itemStructure": "User + Timestamp + Action + Details"
+      }
+    },
+    "buttons": {
+      "primary": {
+        "class": "btn btn-primary",
+        "usage": "Main actions"
+      },
+      "success": {
+        "class": "btn btn-success",
+        "usage": "Create/Add actions"
+      },
+      "outline": {
+        "class": "btn btn-outline-primary",
+        "usage": "Secondary actions"
+      },
+      "walletConnect": {
+        "class": "wallet-connect-btn",
+        "gradient": "linear-gradient(135deg, #ff6b35, #f7931e)",
+        "hoverEffect": "Shimmer animation",
+        "states": ["Connect Wallet", "Disconnect Wallet"]
+      }
+    },
+    "badges": {
+      "status": {
+        "verified": "badge bg-success with shield-check icon",
+        "pending": "badge bg-warning with clock icon",
+        "rejected": "badge bg-danger with x icon"
+      },
+      "verification": {
+        "verified": "Green background with shield-check",
+        "pending": "Orange background with shield"
+      }
+    },
+    "tables": {
+      "transactionTable": {
+        "features": ["Sticky header", "Hover effects", "Action buttons", "Blockchain status"],
+        "pagination": "Bootstrap pagination component"
+      }
+    },
+    "charts": {
+      "library": "Chart.js",
+      "types": [
+        {
+          "name": "budgetUtilizationChart",
+          "type": "bar",
+          "data": "Monthly budget utilization",
+          "colors": "Primary color scheme"
+        },
+        {
+          "name": "budgetAllocationChart",
+          "type": "doughnut",
+          "data": "Category-wise budget distribution",
+          "colors": "Multi-color palette"
+        }
+      ]
+    },
+    "modals": {
+      "walletConnect": {
+        "purpose": "Wallet connection selection",
+        "walletOptions": ["MetaMask", "OKX Wallet", "Trust Wallet", "Coinbase Wallet"],
+        "features": ["Wallet icons", "Descriptions", "Info section about blockchain verification"]
+      },
+      "certificateGeneration": {
+        "purpose": "Generate Barangay Clearance",
+        "features": ["Resident selection", "Form validation", "Certificate display"]
+      }
+    },
+    "filterTags": {
+      "style": "Pill-shaped with hover effects",
+      "states": ["active", "inactive"],
+      "categories": ["All Categories", "Infrastructure", "Social Services", "Education", "Health", "Administration"]
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "id": "dashboardContent",
+      "isDefault": true,
+      "components": [
+        {
+          "name": "Quick Stats Row",
+          "type": "4-column stat cards",
+          "metrics": ["Total Budget", "Utilized Budget", "Ongoing Projects", "Approved Transactions"]
+        },
+        {
+          "name": "Charts Section",
+          "type": "2-column chart layout",
+          "charts": ["Budget Utilization (Bar)", "Budget Allocation (Doughnut)"]
+        },
+        {
+          "name": "Recent Activity Feed",
+          "type": "Timeline with blockchain verification",
+          "features": ["Action icons", "Timestamps", "Verification badges"]
+        },
+        {
+          "name": "Upcoming Events Table",
+          "type": "Tabular data with action buttons",
+          "columns": ["Event", "Date", "Budget", "Status", "Actions"]
+        }
+      ],
+      "functionality": {
+        "autoRefresh": "Last updated timestamp display",
+        "filterTags": "Category-based filtering",
+        "exportOptions": ["Export Report", "Refresh Data"]
+      }
+    },
+    "transactions": {
+      "id": "transactionContent",
+      "components": [
+        {
+          "name": "Transaction History Table",
+          "features": ["Category filtering", "Date range selection", "Blockchain verification status"]
+        },
+        {
+          "name": "Transaction Verification Section",
+          "purpose": "Verify transactions by ID or receipt number",
+          "features": ["Input validation", "Blockchain hash display", "Status alerts"]
+        }
+      ],
+      "functionality": {
+        "addTransaction": "Modal form for new transactions",
+        "viewTransaction": "Detailed transaction view",
+        "downloadReceipt": "PDF generation",
+        "blockchainVerification": "Real-time verification status"
+      }
+    },
+    "auditTrail": {
+      "id": "auditTrailContent",
+      "components": [
+        {
+          "name": "System Activity Log",
+          "style": "Timeline with color-coded severity",
+          "filters": ["Action type", "User role", "Date range"]
+        },
+        {
+          "name": "Advanced Search",
+          "features": ["Multi-field search", "User filtering", "IP address tracking", "Wallet address search"]
+        }
+      ],
+      "functionality": {
+        "realTimeLogging": "Automatic activity capture",
+        "blockchainIntegration": "Immutable audit records",
+        "exportCapability": "CSV/PDF export of audit logs",
+        "advancedFiltering": "Complex query building"
+      }
+    },
+    "budget": {
+      "id": "budgetContent",
+      "components": [
+        {
+          "name": "Budget Overview Cards",
+          "metrics": ["Annual Budget", "Q1 Expenditure", "Q2 Expenditure", "Remaining Budget"]
+        },
+        {
+          "name": "Analytics Charts",
+          "types": ["Monthly Expenditure Trend (Line)", "Category Distribution (Bar)"]
+        },
+        {
+          "name": "Performance Table",
+          "features": ["Category comparison", "Utilization progress bars", "Status indicators"]
+        }
+      ],
+      "functionality": {
+        "quarterlyAnalysis": "Quarter-over-quarter comparison",
+        "categoryDrilldown": "Detailed category analysis",
+        "trendAnalysis": "Historical spending patterns",
+        "budgetForecasting": "Predictive spending analysis"
+      }
+    },
+    "events": {
+      "id": "eventsContent",
+      "status": "Under development",
+      "plannedFeatures": [
+        "Event creation and management",
+        "Budget allocation per event",
+        "Event timeline and calendar view",
+        "Participant management"
+      ]
+    },
+    "citizens": {
+      "id": "citizensContent",
+      "components": [
+        {
+          "name": "Barangay Cards",
+          "features": ["Budget overview per barangay", "Recent transactions", "Utilization progress", "Blockchain verification links"]
+        },
+        {
+          "name": "Certificate Generation",
+          "purpose": "Generate Barangay Clearance documents",
+          "features": ["Resident selection", "Auto-filled templates", "Print functionality"]
+        }
+      ],
+      "functionality": {
+        "transparencyPortal": "Public access to budget information",
+        "documentGeneration": "Official document creation",
+        "blockchainVerification": "Public transaction verification",
+        "multiBarangayView": "Comparative budget analysis"
+      }
+    }
+  },
+  "features": {
+    "walletIntegration": {
+      "purpose": "Blockchain transaction signing and verification",
+      "supportedWallets": ["MetaMask", "OKX", "Trust Wallet", "Coinbase"],
+      "functionality": ["Transaction signing", "Identity verification", "Blockchain interaction"],
+      "uiStates": {
+        "disconnected": "Orange connect button",
+        "connected": "Green status indicator with wallet address"
+      }
+    },
+    "blockchainVerification": {
+      "implementation": "Each transaction gets blockchain hash",
+      "display": "Verification badges throughout the UI",
+      "links": "External blockchain explorer links",
+      "statuses": ["Verified", "Pending", "Failed"]
+    },
+    "chatSystem": {
+      "type": "Floating chat widget",
+      "position": "Bottom right",
+      "features": ["Real-time messaging", "Support agent simulation", "Message history"],
+      "toggle": "Show/hide with chat button"
+    },
+    "searchAndFilter": {
+      "globalSearch": "Header search bar",
+      "filterTags": "Category-based filtering",
+      "dateRanges": "Time-based filtering",
+      "advancedFilters": "Multi-criteria search"
+    },
+    "responsiveDesign": {
+      "breakpoints": "Bootstrap responsive classes",
+      "mobileAdaptation": ["Horizontal scrolling nav", "Adjusted chat widget size", "Responsive tables"],
+      "printOptimization": "Print-specific CSS for documents"
+    }
+  },
+  "interactions": {
+    "navigation": {
+      "mechanism": "JavaScript tab switching",
+      "activeState": "Active class on nav items",
+      "contentSwitching": "Show/hide content sections",
+      "animation": "Fade-in animation on content change"
+    },
+    "hoverEffects": {
+      "cards": "Transform translateY(-5px) + enhanced shadow",
+      "buttons": "Color transitions and transforms",
+      "navItems": "Transform translateX(5px) + background change",
+      "tableRows": "Background color change + pointer cursor"
+    },
+    "clickEvents": {
+      "walletConnect": "Modal trigger or disconnect action",
+      "navigation": "Section switching",
+      "filters": "Dynamic content filtering",
+      "actions": "Modal triggers or form submissions"
+    },
+    "animations": {
+      "shimmer": "Wallet button hover effect",
+      "fadeIn": "Content loading animation",
+      "slideIn": "Modal entrance animations"
+    }
+  },
+  "dataStructures": {
+    "transactions": {
+      "fields": ["description", "amount", "date", "receipt", "blockchainStatus", "category"],
+      "verification": {
+        "verified": "Green shield-check badge",
+        "pending": "Orange shield badge"
+      }
+    },
+    "auditLog": {
+      "fields": ["user", "timestamp", "action", "details", "ipAddress", "blockchainHash"],
+      "severity": ["success", "warning", "danger", "info"]
+    },
+    "residents": {
+      "fields": ["id", "name", "age", "address"],
+      "purpose": "Certificate generation"
+    },
+    "events": {
+      "fields": ["name", "date", "budget", "status", "location"],
+      "statuses": ["Ongoing", "Planned", "Approved", "Completed"]
+    }
+  },
+  "externalDependencies": {
+    "css": [
+      "Bootstrap 5.3.0",
+      "Bootstrap Icons 1.10.0",
+      "Animate.css 4.1.1"
+    ],
+    "javascript": [
+      "Bootstrap Bundle 5.3.0",
+      "Chart.js"
+    ],
+    "fonts": "System fonts (Segoe UI stack)"
+  },
+  "implementationGuidelines": {
+    "consistency": {
+      "iconUsage": "Bootstrap Icons throughout",
+      "colorApplication": "Consistent use of CSS custom properties",
+      "spacingSystem": "Bootstrap spacing utilities",
+      "componentStructure": "Consistent card layouts and button styles"
+    },
+    "accessibility": {
+      "colorContrast": "Proper contrast ratios maintained",
+      "semanticMarkup": "Proper use of headings and landmarks",
+      "keyboardNavigation": "Focus management in modals and navigation"
+    },
+    "performance": {
+      "lazyLoading": "Charts initialized on DOM ready",
+      "efficientAnimations": "CSS transitions over JavaScript animations",
+      "responsiveImages": "Proper image optimization"
+    },
+    "maintainability": {
+      "cssVariables": "Centralized color and sizing system",
+      "modularCSS": "Component-specific styling",
+      "semanticClassNames": "Clear, purposeful class naming"
+    }
+  },
+  "usageInstructions": {
+    "forCursor": {
+      "context": "Use this JSON as context when building similar government/municipal systems",
+      "designPatterns": "Reference the component structures for consistent UI patterns",
+      "colorScheme": "Apply the color palette for cohesive branding",
+      "interactions": "Implement similar hover effects and animations",
+      "responsiveness": "Follow the responsive design patterns",
+      "functionality": "Reference the page-specific functionality requirements"
+    },
+    "gitMergeApproach": {
+      "steps": [
+        "1. Save this JSON as `design-system.json` in your project root",
+        "2. Reference specific sections when building components",
+        "3. Use the color palette as CSS custom properties",
+        "4. Implement the component structures as reusable templates",
+        "5. Follow the interaction patterns for consistent UX"
+      ]
+    }
+  }
+}
